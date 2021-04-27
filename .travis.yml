@@ -27,5 +27,5 @@ before_script:
   - export RISCV=$(pwd)/riscv/bin/
 
 script:
-  - make -j 4 CC=$(RISCV)/riscv64-unknown-linux-gnu-gcc AS=$(RISCV)/riscv64-unknown-linux-gnu-as LD=$(RISCV)/riscv64-unknown-linux-gnu-ld
+  - make -j 4 CC=$RISCV/riscv64-unknown-linux-gnu-gcc AS=$RISCV/riscv64-unknown-linux-gnu-as LD=$RISCV/riscv64-unknown-linux-gnu-ld
 
