@@ -1,13 +1,13 @@
 # risc-v-os [![Build Status](https://travis-ci.com/cypox/risc-v-os.svg?branch=master)](https://travis-ci.org/github/cypox/virtual-economy)
 
 ## Building
-You need riscv cross compile toolchain. You can download it [here](https://github.com/riscv/riscv-gnu-toolchain/releases/)
+You need riscv cross compile toolchain. You can download it [here](https://github.com/riscv/riscv-gnu-toolchain/releases/).
 
 To build you simply run:
 `make -j 4 RISCVPATH={PATH_TO_YOUR_RISCV_TOOLCHAIN_BIN_FOLDER}`
 
 ## Running on qemu
-You need qemu with riscv support. You can compile it from [here](https://risc-v-getting-started-guide.readthedocs.io/en/latest/linux-qemu.html)
+You need qemu with riscv support. You can compile it from [here](https://risc-v-getting-started-guide.readthedocs.io/en/latest/linux-qemu.html).
 
 To run with OpenSBI simply run:
 `qemu-system-riscv64 -nographic -machine sifive_u -kernel main.elf`
@@ -24,7 +24,7 @@ To decode it:
 
 You can check the memory address (low, high), cpus, uart addresses (for prining), etc.
 
-If you are getting overlapping errors in qemu (regions overlap), make sure that in your linker script (link.ld), the .text segment starts *after* the low memory address since the OpenSBI code is put at that location. In this example, I am using 0x80020000 since my OpenSBI is 108kb long (you can check this when you run the machine, it gives you the size of the OpenSBI)
+If you are getting overlapping errors in qemu (regions overlap), make sure that in your linker script (link.ld), the .text segment starts *after* the low memory address since the OpenSBI code is put at that location. In this example, I am using 0x80020000 since my OpenSBI is 108kb long (you can check this when you run the machine, it gives you the size of the OpenSBI).
 
 ## Verification
 You can disassemble and check the addresses of the elf file:
