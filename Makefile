@@ -1,6 +1,6 @@
-AS=/home/cypox/personal/risc-v-os/gnu-toolchain/riscv-gnu-toolchain/build/bin/riscv64-unknown-linux-gnu-as
-LD=/home/cypox/personal/risc-v-os/gnu-toolchain/riscv-gnu-toolchain/build/bin/riscv64-unknown-linux-gnu-ld
-CC=/home/cypox/personal/risc-v-os/gnu-toolchain/riscv-gnu-toolchain/build/bin/riscv64-unknown-linux-gnu-gcc
+AS=riscv64-unknown-linux-gnu-as
+LD=riscv64-unknown-linux-gnu-ld
+CC=riscv64-unknown-linux-gnu-gcc
 
 CFLAGS=-mcmodel=medany -static -std=gnu99 -O2 -ffast-math -fno-common -fno-builtin-printf -fno-tree-loop-distribute-patterns
 LDFLAGS=
