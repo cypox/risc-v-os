@@ -4,23 +4,33 @@
 You need riscv cross compile toolchain. You can download it [here](https://github.com/riscv/riscv-gnu-toolchain/releases/).
 
 To build you simply run:
-`make -j 4 RISCVPATH={PATH_TO_YOUR_RISCV_TOOLCHAIN_BIN_FOLDER}`
+```bash
+make -j 4 RISCVPATH={PATH_TO_YOUR_RISCV_TOOLCHAIN_BIN_FOLDER}
+```
 
 ## Running on qemu
 You need qemu with riscv support. You can compile it from [here](https://risc-v-getting-started-guide.readthedocs.io/en/latest/linux-qemu.html).
 
 To run with OpenSBI simply run:
-`qemu-system-riscv64 -nographic -machine sifive_u -kernel main.elf`
+```bash
+qemu-system-riscv64 -nographic -machine sifive_u -kernel main.elf
+```
 
 You can specify the bios with:
-`qemu-system-riscv64 -nographic -machine sifive_u -bios /usr/local/share/qemu/opensbi-riscv64-generic-fw_dynamic.bin -kernel main.elf`
+```bash
+qemu-system-riscv64 -nographic -machine sifive_u -bios /usr/local/share/qemu/opensbi-riscv64-generic-fw_dynamic.bin -kernel main.elf
+```
 
 ## Configuration
 To get the device tree:
-`qemu-system-riscv64 -nographic -machine sifive_u -machine dumpdtb=riscv64-virt.dtb -m 128M -kernel main.elf`
+```bash
+qemu-system-riscv64 -nographic -machine sifive_u -machine dumpdtb=riscv64-virt.dtb -m 128M -kernel main.elf
+```
 
 To decode it:
-`dtc -I dtb -O dts -o riscv64-virt.dts riscv64-virt.dtb`
+```bash
+dtc -I dtb -O dts -o riscv64-virt.dts riscv64-virt.dtb
+```
 
 You can check the memory address (low, high), cpus, uart addresses (for prining), etc.
 
@@ -28,8 +38,14 @@ If you are getting overlapping errors in qemu (regions overlap), make sure that 
 
 ## Verification
 You can disassemble and check the addresses of the elf file:
-`riscv64-unknown-linux-gnu-objdump -d main.elf`
+```bash
+riscv64-unknown-linux-gnu-objdump -d main.elf
+```
 or:
-`riscv64-unknown-linux-gnu-objdump -S main.elf`
+```bash
+riscv64-unknown-linux-gnu-objdump -S main.elf
+```
 or:
-`riscv64-unknown-linux-gnu-objdump --syms main.elf`
+```bash
+riscv64-unknown-linux-gnu-objdump --syms main.elf
+```
