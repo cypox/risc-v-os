@@ -1,32 +1,30 @@
 OUTPUT_ARCH( "riscv" )
 
+ENTRY( _start )
+
+MEMORY
+{
+  ram   (wxa!ri) : ORIGIN = 0x80000000, LENGTH = 128M
+}
+
 SECTIONS
 {
   . = 0x80020000;
-  .text : 
-  {
-    main.o(.text)
-    *(.text)
+  .text : {
+    *(.text.init) *(.text .text.*)
   }
 
-  /* data segment */
-  .data : { *(.data) }
-
-  .sdata : {
-    _gp = . + 0x800;
-    *(.srodata.cst16) *(.srodata.cst8) *(.srodata.cst4) *(.srodata.cst2)
-    *(.srodata*)
-    *(.sdata .sdata.* .gnu.linkonce.s.*)
+  .rodata : {
+    *(.rodata .rodata.*)
   }
 
-  /* bss segment */
-  .sbss : {
-    *(.sbss .sbss.* .gnu.linkonce.sb.*)
-    *(.scommon)
+  .data : {
+    . = ALIGN(4096);
+    *(.sdata .sdata.*) *(.data .data.*)
   }
-  .bss : { *(.bss) }
 
-  /* End of uninitalized data segement */
-  _end = .;
-  _heap_end = .;
+  .bss :{
+    *(.sbss .sbss.*) *(.bss .bss.*)
+  }
+
 }
