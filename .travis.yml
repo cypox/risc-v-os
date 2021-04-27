@@ -21,11 +21,11 @@ matrix:
 
 before_script:
   - sudo apt update -qq
-  - sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build libglib2.0-dev libpixman-1-dev
+# - sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build libglib2.0-dev libpixman-1-dev
   - wget https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.04.23/riscv64-glibc-ubuntu-20.04-nightly-2021.04.23-nightly.tar.gz
   - tar xf riscv64-glibc-ubuntu-20.04-nightly-2021.04.23-nightly.tar.gz
   - export RISCV=$(pwd)/riscv/bin/
 
 script:
-  - make -j 4 CC=$RISCV/riscv64-unknown-linux-gnu-gcc AS=$RISCV/riscv64-unknown-linux-gnu-as LD=$RISCV/riscv64-unknown-linux-gnu-ld
+  - make -j 4 RISCVPATH=$RISCV
 
