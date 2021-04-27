@@ -16,7 +16,6 @@ PHDRS
 
 SECTIONS
 {
-  . = 0x00010000;
   .text : {
     PROVIDE(_text_start = .);
     *(.text.init)
