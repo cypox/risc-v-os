@@ -28,7 +28,7 @@ qemu-system-riscv64 -nographic -machine sifive_u -bios /usr/local/share/qemu/ope
 
 Or you can run the iso file:
 ```bash
-qemu-system-riscv64 -nographic -machine sifive_u -m 128 -boot d -cdrom boot.iso
+qemu-system-riscv64 -nographic -machine sifive_u -bios none -boot d -m 128 -cdrom boot.iso
 ```
 
 ## Configuration

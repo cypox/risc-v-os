@@ -13,10 +13,10 @@ main.elf: crt0.s link.ld main.c
 	$(LD) -T link.ld main.o crt0.o -o main.elf $(LDFLAGS)
 	rm crt0.o main.o
 
-clean:
-	rm -f crt0.o main.o main.elf boot.iso
-
 iso: main.elf
 	dd if=/dev/zero of=boot.iso bs=512 count=2880
 	dd if=$(OPENSBI_BIN) of=boot.iso conv=notrunc bs=512 seek=0
-	dd if=main.elf of=boot.iso conv=notrunc bs=512 seek=256
+	dd if=main.elf of=boot.iso conv=notrunc bs=512 seek=147
+
+clean:
+	rm -f crt0.o main.o main.elf boot.iso
