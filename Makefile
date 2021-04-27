@@ -1,7 +1,7 @@
 RISCVPATH=
-AS=$(RISCVPATH)/riscv64-unknown-linux-gnu-as
-LD=$(RISCVPATH)/riscv64-unknown-linux-gnu-ld
-CC=$(RISCVPATH)/riscv64-unknown-linux-gnu-gcc
+AS=$(RISCVPATH)riscv64-unknown-linux-gnu-as
+LD=$(RISCVPATH)riscv64-unknown-linux-gnu-ld
+CC=$(RISCVPATH)riscv64-unknown-linux-gnu-gcc
 
 CFLAGS=-mcmodel=medany -static -std=gnu99 -O2 -ffast-math -fno-common -fno-builtin-printf -fno-tree-loop-distribute-patterns
 LDFLAGS=
