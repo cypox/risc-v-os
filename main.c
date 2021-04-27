@@ -13,7 +13,7 @@ int putchar(int ch)
 
 void main()
 {
-    const char *s = "Hello.\n";
+    const char *s = "Welcome to rvos!\n";
     while (*s) putchar(*s++);
     while(1);
 }
