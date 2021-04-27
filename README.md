@@ -8,6 +8,11 @@ To build you simply run:
 make -j 4 RISCVPATH={PATH_TO_YOUR_RISCV_TOOLCHAIN_BIN_FOLDER}
 ```
 
+To build an iso bootfile you run:
+```bash
+make -j 4 iso RISCVPATH={PATH_TO_YOUR_RISCV_TOOLCHAIN_BIN_FOLDER}
+```
+
 ## Running on qemu
 You need qemu with riscv support. You can compile it from [here](https://risc-v-getting-started-guide.readthedocs.io/en/latest/linux-qemu.html).
 
@@ -19,6 +24,11 @@ qemu-system-riscv64 -nographic -machine sifive_u -kernel main.elf
 You can specify the bios with:
 ```bash
 qemu-system-riscv64 -nographic -machine sifive_u -bios /usr/local/share/qemu/opensbi-riscv64-generic-fw_dynamic.bin -kernel main.elf
+```
+
+Or you can run the iso file:
+```bash
+qemu-system-riscv64 -nographic -machine sifive_u -m 128 -boot d -cdrom boot.iso
 ```
 
 ## Configuration
