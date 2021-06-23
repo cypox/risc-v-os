@@ -4,7 +4,7 @@ AS=$(RISCVPATH)riscv64-unknown-linux-gnu-as
 LD=$(RISCVPATH)riscv64-unknown-linux-gnu-ld
 CC=$(RISCVPATH)riscv64-unknown-linux-gnu-gcc
 
-CFLAGS=-mcmodel=medany -static -std=c17 -O2 -ffast-math -fno-common -fno-builtin-printf -fno-tree-loop-distribute-patterns
+CFLAGS=-mcmodel=medany -static -std=c17 -O2 -ffast-math -fno-common -fno-builtin-printf -fno-tree-loop-distribute-patterns -nostartfiles -nostdlib -nostdinc
 LDFLAGS=
 
 main.elf: crt0.s link.ld main.c
