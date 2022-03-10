@@ -16,7 +16,7 @@ main.elf: crt0.s link.ld main.c
 baremetal.elf: crt0.s link-baremetal.ld main.c
 	$(AS) -o crt0.o crt0.s
 	$(CC) $(CFLAGS) -c main.c -o main.o
-	$(LD) -T link-baremetal.ld main.o crt0.o -o baremetal-cpp.elf $(LDFLAGS)
+	$(LD) -T link-baremetal.ld main.o crt0.o -o baremetal.elf $(LDFLAGS)
 	rm crt0.o main.o
 
 baremetal-as.elf: startup.s link-baremetal.ld
@@ -30,4 +30,4 @@ iso: main.elf
 	dd if=main.elf of=boot.iso conv=notrunc bs=512 seek=147
 
 clean:
-	rm -f crt0.o main.o main.elf baremetal.elf startup.o boot.iso
+	rm -f crt0.o main.o main.elf baremetal-as.elf baremetal.elf startup.o boot.iso
