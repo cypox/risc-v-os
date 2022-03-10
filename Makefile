@@ -3,6 +3,7 @@ OPENSBI_BIN=/usr/local/share/qemu/opensbi-riscv64-generic-fw_dynamic.bin
 AS=$(RISCVPATH)riscv64-unknown-linux-gnu-as
 LD=$(RISCVPATH)riscv64-unknown-linux-gnu-ld
 CC=$(RISCVPATH)riscv64-unknown-linux-gnu-gcc
+SZ=$(RISCVPATH)riscv64-unknown-linux-gnu-size
 
 CFLAGS=-mcmodel=medany -static -std=c17 -O2 -ffast-math -fno-common -fno-builtin-printf -fno-tree-loop-distribute-patterns -nostartfiles -nostdlib -nostdinc
 LDFLAGS=
@@ -17,6 +18,7 @@ baremetal.elf: crt0.s link-baremetal.ld main.c
 	$(AS) -o crt0.o crt0.s
 	$(CC) $(CFLAGS) -c main.c -o main.o
 	$(LD) -T link-baremetal.ld main.o crt0.o -o baremetal.elf $(LDFLAGS)
+	$(SZ) baremetal.elf
 	rm crt0.o main.o
 
 baremetal-as.elf: startup.s link-baremetal.ld
