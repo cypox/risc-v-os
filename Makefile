@@ -1,4 +1,4 @@
-RISCVPATH=
+RISCVPATH=../../gnu-toolchain/riscv-gnu-toolchain/build/bin/
 OPENSBI_BIN=/usr/local/share/qemu/opensbi-riscv64-generic-fw_dynamic.bin
 AS=$(RISCVPATH)riscv64-unknown-linux-gnu-as
 LD=$(RISCVPATH)riscv64-unknown-linux-gnu-ld
@@ -13,10 +13,15 @@ main.elf: crt0.s link.ld main.c
 	$(LD) -T link.ld main.o crt0.o -o main.elf $(LDFLAGS)
 	rm crt0.o main.o
 
+baremetal.elf: startup.s link.lds
+	$(AS) -o startup.o startup.s
+	$(LD) -T link.lds startup.o -o baremetal.elf $(LDFLAGS)
+	rm startup.o
+
 iso: main.elf
 	dd if=/dev/zero of=boot.iso bs=512 count=2880
 	dd if=$(OPENSBI_BIN) of=boot.iso conv=notrunc bs=512 seek=0
 	dd if=main.elf of=boot.iso conv=notrunc bs=512 seek=147
 
 clean:
-	rm -f crt0.o main.o main.elf boot.iso
+	rm -f crt0.o main.o main.elf baremetal.elf startup.o boot.iso
