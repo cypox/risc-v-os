@@ -13,7 +13,13 @@ main.elf: crt0.s link.ld main.c
 	$(LD) -T link.ld main.o crt0.o -o main.elf $(LDFLAGS)
 	rm crt0.o main.o
 
-baremetal.elf: startup.s link-baremetal.ld
+baremetal-cpp.elf: crt0.s link-baremetal.ld main.c
+	$(AS) -o crt0.o crt0.s
+	$(CC) $(CFLAGS) -c main.c -o main.o
+	$(LD) -T link-baremetal.ld main.o crt0.o -o main.elf $(LDFLAGS)
+	rm crt0.o main.o
+
+baremetal-as.elf: startup.s link-baremetal.ld
 	$(AS) -o startup.o startup.s
 	$(LD) -T link-baremetal.ld startup.o -o baremetal.elf $(LDFLAGS)
 	rm startup.o

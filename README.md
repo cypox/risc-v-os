@@ -33,8 +33,10 @@ qemu-system-riscv64 -nographic -machine sifive_u -bios none -boot d -m 128 -cdro
 
 You can run the baremetal build elf with:
 ```bash
-qemu-system-riscv64 -nographic -machine sifive_u -bios none -kernel baremetal.elf
+qemu-system-riscv64 -nographic -machine sifive_u -bios none -kernel baremetal-cpp.elf
 ```
+
+The baremetal app changes the linker script to start the memory at 0x80000000 rather than 0x80020000. This way, there would be no overlap with the bios which already resides on the RAM origin (0x0).
 
 ## Configuration
 To get the device tree:
