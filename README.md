@@ -31,6 +31,11 @@ Or you can run the iso file:
 qemu-system-riscv64 -nographic -machine sifive_u -bios none -boot d -m 128 -cdrom boot.iso
 ```
 
+You can run the baremetal build elf with:
+```bash
+qemu-system-riscv64 -nographic -machine sifive_u -bios none -kernel baremetal.elf
+```
+
 ## Configuration
 To get the device tree:
 ```bash
