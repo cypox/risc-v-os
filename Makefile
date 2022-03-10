@@ -13,9 +13,9 @@ main.elf: crt0.s link.ld main.c
 	$(LD) -T link.ld main.o crt0.o -o main.elf $(LDFLAGS)
 	rm crt0.o main.o
 
-baremetal.elf: startup.s link.lds
+baremetal.elf: startup.s link-baremetal.ld
 	$(AS) -o startup.o startup.s
-	$(LD) -T link.lds startup.o -o baremetal.elf $(LDFLAGS)
+	$(LD) -T link-baremetal.ld startup.o -o baremetal.elf $(LDFLAGS)
 	rm startup.o
 
 iso: main.elf
