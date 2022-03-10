@@ -17,4 +17,3 @@ void main()
     while (*s) putchar(*s++);
     while(1);
 }
-
